@@ -12,7 +12,7 @@
 
 using namespace std;
 int main(int argc, char *argv[]){
-  int *p;
+	int *p;
 	char pathname[] = "/home/squee/FTOK/main.cpp";
 	int shmid;
 	int trig=1;
@@ -41,15 +41,16 @@ int main(int argc, char *argv[]){
 			printf("Can\'t create shared memory\n");
 			cout<<strerror(errno)<<endl;
 			exit(-1);
-    }else{
-      if((shmid = shmget(key, sizeof(int), 0) )< 0){
-        printf("Can\'t find shared memory\n");
-        cout << strerror(errno)<<endl;
-        exit(-1);
+    		}else{
+        		if((shmid = shmget(key, sizeof(int), 0) )< 0){
+            			printf("Can\'t find shared memory\n");
+            			cout << strerror(errno)<<endl;
+            			exit(-1);
 			}
-    	trig = 0;
-    }
-  }
+    			trig = 0;
+    		}
+
+    	}
 	PRINT(shmid, "shmid ")
 
 	//Создание ссылки на выделенный сегмент 
@@ -62,17 +63,20 @@ int main(int argc, char *argv[]){
 
 	//если идентификатор был только что создан, то устанавливает значение переменной в SM равым 1, иначе инкрементирует его N раз
 	if (trig){
-	  (*p)=1;
-  }else{
+		(*p)=1;
+    	}else{
 		for(i=0;i<N;i++) (*p)++;
-  }
-  PRINT(*p, "[P] ")
+    	}
+    	PRINT(*p, "[P] ")
 
 
 	if(shmdt(p) < 0){
 		printf("Can't detach shared memory\n");
 		cout<<strerror(errno)<<endl;
 		exit(-1);
-  }
-  return 0;
+    	}
+
+
+
+    return 0;
 }
