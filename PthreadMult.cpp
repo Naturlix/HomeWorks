@@ -118,5 +118,6 @@ void * ret(void* args)
 	int** mass3=arg->id3;
 	
 	int k = 0;
-	for (k = 0; k < m; k++) mass3[i][j] += mass1[i][k] * mass2[k][j];
+	for (k = 0; k < m; k++) 
+		mass3[i][j] += mass1[i][k] * mass2[k][j];
 }
