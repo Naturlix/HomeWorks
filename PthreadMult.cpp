@@ -90,9 +90,12 @@ int main(int argc, char* argv[])
 			args[i*n+j].m = m;
 
 			pthread_create (&thread[ i*n+j ], NULL, ret, (void*) &args[i*n+j]);
-			pthread_join   (thread[ i*n+j ], NULL);
 		}
     	}
+    	
+    	for (i = 0; i < n; i++)
+		for (j = 0; j < k; j++)
+    			pthread_join   (thread[ i*n+j ], NULL);
 
 //Выводим результат
 
