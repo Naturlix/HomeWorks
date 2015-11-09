@@ -18,7 +18,10 @@ int main(){
 	for(i=0;i<N;i++){
 	pthread_create(&thrd[i], NULL, x, NULL);
 	}
+	for(i=0;i<N;i++){
 	pthread_join(thrd[i],NULL);
+	}	
+	
 	printf("%d",X);	
 return 0;
 }
