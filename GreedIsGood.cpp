@@ -13,33 +13,33 @@ int main(int argc, char *argv[]){
 	int i;
 	char temp[20];
 	char rtf[20];
-	string str,buff,output;
+	string str, buff, output;
 	size_t f;
 	
 	ifo.open("test.c");
 	while(!ifo.eof()){
 		str.clear();
-		getline(ifo,str);
+		getline(ifo, str);
 		for(i=1; i<argc; i++){
 			strcpy(temp, "");
 			strcpy(temp, argv[i]);
 			strcpy(rtf, "");		
-			sprintf(rtf, "par%d",i);
+			sprintf(rtf, "par%d", i);
 			f=0;
-			while(str.find(temp,f)!=string::npos){
+			while(str.find(temp, f) != string::npos){
 				buff.clear();
-				f = str.find(temp,f);
-				if( (( (str[f-1]<'0' || str[f-1]>'9') && (str[f-1]<'A' || str[f-1]>'Z') && (str[f-1]<'a' || str[f-1]>'z') ) ) && 
-						( (str[f+strlen(temp)]<'0' || str[f+strlen(temp)]>'9') && (str[f+strlen(temp)]<'A' || str[f+strlen(temp)]>'Z') &&
- 						(str[f+strlen(temp)]<'a' || str[f+strlen(temp)]>'z') ) ){
-					buff=str.substr(0,f)+rtf+str.substr(f+strlen(temp));
-					swap(str,buff);
+				f = str.find(temp, f);
+				if( ( ( (str[f-1] < '0' || str[f-1] > '9') && (str[f-1] < 'A' || str[f-1] > 'Z') && (str[f-1] < 'a' || str[f-1] > 'z') ) ) && 
+					( (str[f+strlen(temp)] < '0' || str[f+strlen(temp)] > '9') && (str[f + strlen(temp)] < 'A' || str[f + strlen(temp)] > 'Z') &&
+ 					(str[f+strlen(temp)] < 'a' || str[f+strlen(temp)] > 'z') ) ){
+					buff = str.substr(0, f) + rtf + str.substr(f + strlen(temp));
+					swap(str, buff);
 				}else{
 					f++;
 				}
 			}
 		}
-		output+=(str+'\n');
+		output += (str + '\n');
 	}
 	ifo.close();
 
