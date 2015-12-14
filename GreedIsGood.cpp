@@ -25,12 +25,14 @@ int main(int argc, char *argv[]){
 			strcpy(temp, argv[i]);
 			strcpy(rtf, "");
 			for(j=0; j< strlen(temp); j++){
-				srand((int)temp[j]);
+				srand((int)temp[j]+i*j);
 				num = ((int)'a') + rand() % ((int)'z'-(int)'a');
 				c = (char)num;
 				rtf[j]=c;
 			}
 			rtf[j]='\0';
+
+			cout << rtf << endl;
 			f=0;
 			while(str.find(temp, f) != string::npos){
 				buff.clear();
