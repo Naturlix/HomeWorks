@@ -10,12 +10,12 @@ using namespace std;
 int main(int argc, char *argv[]){
 	ifstream ifo;
 	ofstream ofo;
-	int i;
+	int i,j,num;
 	char temp[20];
 	char rtf[20];
 	string str, buff, output;
 	size_t f;
-	
+	char c;
 	ifo.open("test.c");
 	while(!ifo.eof()){
 		str.clear();
@@ -23,8 +23,14 @@ int main(int argc, char *argv[]){
 		for(i=1; i<argc; i++){
 			strcpy(temp, "");
 			strcpy(temp, argv[i]);
-			strcpy(rtf, "");		
-			sprintf(rtf, "par%d", i);
+			strcpy(rtf, "");
+			for(j=0; j< strlen(temp); j++){
+				srand((int)temp[j]);
+				num = ((int)'a') + rand() % ((int)'z'-(int)'a');
+				c = (char)num;
+				rtf[j]=c;
+			}
+			rtf[j]='\0';
 			f=0;
 			while(str.find(temp, f) != string::npos){
 				buff.clear();
